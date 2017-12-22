@@ -89,7 +89,6 @@ app.get("/scrape", function (req, res) {
       var result = {};
 
       result.title = $(this).children().children().children("a.h2-center").text();
-      result.body = $(this).children().children().children().children().children("div").text();
       result.link = $(this).children().children().children("a.h2-center").attr("href");
       result.saved = false;
 
