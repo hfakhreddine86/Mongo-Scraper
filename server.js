@@ -54,29 +54,22 @@ db.once("open", function () {
 
 // Routes
 app.post("/saved:id", function (req, res) {
-  // Create a new saved and pass the req.body to the entry
-  var newSaved = new Saved(req.body);
 
-  // And save the new note the db
+  var newSaved = new Saved(req.body);
   newSaved.save(function (error, doc) {
-    // Log any errors
     if (error) {
       console.log(error);
     } else {
-      // Use the article id to find and update it's note
+
       Article.findOneAndUpdate({
           "_id": req.params.id
         }, {
           "saved": true
         })
-        // Execute the above query
         .exec(function (err, doc) {
-          // Log any errors
           if (err) {
             console.log(err);
           } else {
-            // Or send the document to the browser
-            console.log("saved the article");
             res.send(doc);
           }
         });
@@ -86,30 +79,23 @@ app.post("/saved:id", function (req, res) {
 });
 
 
-// A GET request to scrape the echojs website
+// A GET request to scrape the article factory website
 app.get("/scrape", function (req, res) {
-  // First, we grab the body of the html with request
-  request("http://www.articlesfactory.com/articles/technology.html", function (error, response, html) {
-    // Then, we load that into cheerio and save it to $ for a shorthand selector
-    var $ = cheerio.load(html);
-    // Now, we grab every h2 within an article tag, and do the following:
-    $("div.h2-center").each(function (i, element) {
 
-      // Save an empty result object
+  request("http://www.articlesfactory.com/articles/technology.html", function (error, response, html) {
+    var $ = cheerio.load(html);
+    $("div.txt-main").each(function (i, element) {
+
       var result = {};
 
-      // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this).children("a.h2-center").text();
-      result.link = $(this).children("a.h2-center").attr("href");
+      result.title = $(this).children().children().children("a.h2-center").text();
+      result.body = $(this).children().children().children().children().children("div").text();
+      result.link = $(this).children().children().children("a.h2-center").attr("href");
       result.saved = false;
 
-      // Using our Article model, create a new entry
-      // This effectively passes the result object to the entry (and the title and link)
       var entry = new Article(result);
 
-      // Now, save that entry to the db
       entry.save(function (err, doc) {
-        // Log any errors
         if (err) {
           console.log(err);
         } else {
@@ -121,13 +107,10 @@ app.get("/scrape", function (req, res) {
   });
 });
 
-
-
 // This will get the articles we scraped from the mongoDB
 app.get("/articles", function (req, res) {
-  // Grab every doc in the Articles array
+
   Article.find({}, function (error, doc) {
-    // Log any errors
     if (error) {
       console.log(error);
     } else {
@@ -138,11 +121,10 @@ app.get("/articles", function (req, res) {
 
 //Grab all saved articles
 app.get("/saved", function (req, res) {
-  // Grab every doc in the Articles array
+
   Article.find({
     "saved": true
   }, function (error, doc) {
-    // Log any errors
     if (error) {
       console.log(error);
     } else {
@@ -154,15 +136,12 @@ app.get("/saved", function (req, res) {
 // Grab an article by it's ObjectId
 app.get("/savedArticles/:id", function (req, res) {
   console.log("Req.params.id: " + req.params.id);
-  // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
+
   Article.findOne({
       "_id": req.params.id
     })
-    // ..and populate all of the notes associated with it
     .populate("note")
-    // now, execute our query
     .exec(function (error, doc) {
-      // Log any errors
       if (error) {
         console.log(error);
       } else {
@@ -173,28 +152,23 @@ app.get("/savedArticles/:id", function (req, res) {
 
 // Create a new note or replace an existing note
 app.post("/savedArticles/:id", function (req, res) {
-  // Create a new note and pass the req.body to the entry
-  var newNote = new Note(req.body);
 
-  // And save the new note the db
+  var newNote = new Note(req.body);
   newNote.save(function (error, doc) {
-    // Log any errors
     if (error) {
       console.log(error);
     } else {
+
       // Use the article id to find and update it's note
       Article.findOneAndUpdate({
           "_id": req.params.id
         }, {
           "note": doc._id
         })
-        // Execute the above query
         .exec(function (err, doc) {
-          // Log any errors
           if (err) {
             console.log(err);
           } else {
-            // Or send the document to the browser
             res.send(doc);
           }
         });
