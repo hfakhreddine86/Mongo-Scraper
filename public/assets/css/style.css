@@ -1,157 +1,191 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
-    background-image: url("/assets/images/background.jpg");
-    background-repeat: repeat;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    color: black;
-    box-sizing: border-box;
+  margin-bottom: 80px;
+  background: #ffffff;
+  font-family: 'Times New Roman', Times, serif;
+  background-image: url("../images/background.jpeg");
 }
 
-main {
-    flex: 1 0 auto;
+.container-fluid {
+  background:#ffffff;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
 }
 
-.save {
-    margin-top: 12%;
+.navbar {
+  margin-bottom: 0;
 }
 
-.note {
-    margin-top: 10%;
+.jumbotron {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  padding: 0;
+  font-family: "Times-New-Roman";
 }
 
-h1 {
-    margin: 5.1rem 0 2.68rem 0;
-    font-weight: 600;
-    letter-spacing: 2px;
+.jumbotron .overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
-.footer-copyright>.container {
-    color: black;
-    /*background-color: white;*/
+.jumbotron .caption {
+  position: absolute;
+  top: 6%;
+  width: 100%;
+  text-align: center;
 }
 
-.footer-copyright>.container>.right {
-    color: black;
+.jumbotron .caption h1,
+.jumbotron .caption p {
+  color: rgb(0, 0, 0);
 }
 
-.footer-copyright {
-    color: white;
-    height: 64px;
+.jumbotron h1 {
+  font-size: 80px;
+  font-weight: 800;
 }
 
-.waves-effect {
-    border-radius: 10px;
+.jumbotron p {
+  font-size: 30px;
 }
 
-nav .brand-logo {
-    letter-spacing: 3px;
-    color: black;
+.panel {
+  border-radius: 0;
 }
 
-#nav-mobile {
-    letter-spacing: 1px;
-    margin-right: 3%;
+.panel.panel-default .panel-heading {
+  background-color: #ffffff;
+  position: relative;
 }
 
-nav ul a {
-    letter-spacing: 2px;
-    color: black;
+.panel.panel-default .panel-heading h3 {
+  color: rgb(0, 0, 0);
 }
 
-nav {
-    height: 100px;
-    line-height: 100px;
-    text-shadow: 1%;
+.panel.panel-default .panel-heading .btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
-#mobile-demo li>a {
-    letter-spacing: 1px;
-    font-size: 1.5em;
+.panel.panel-default .panel-heading .btn.delete {
+  right: 160px;
 }
 
-#wrapper {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 5%;
-    margin-bottom: 7%;
-    padding: 2%;
-    border: 1px solid white;
-    background-color: white;
-    /*opacity: .5;*/
-    border-radius: 50px;
+.panel.panel-default .panel-body {
+  font-size: 16px;
 }
 
-#wrapper>h2 {
-    padding-left: 4%;
-    font-weight: 600;
+.panel.panel-default .panel-heading .article-link {
+  color: rgb(0, 0, 0);
+  display: inline-block;
+  width: 80%;
 }
 
-#articles {
-    display: inline-block;
-    overflow: auto;
-    width: 100%;
-    height: auto;
-    border: 1px solid white;
-    padding: 3%;
+.footer > .container > p {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  margin: 0;
+  font-weight: 800;
+  background: #ffffff;
 }
 
-#savedArticles {
-    display: inline-block;
-    overflow: auto;
-    width: 100%;
-    height: auto;
-    border: 1px solid white;
-    padding: 3%;
+.jumbotron > caption > a.scrape-new {
+  color: black;
 }
 
-#notes {
-    /*float: right;*/
-    width: 39%;
-    border: 1px solid white;
-    background: white;
+.navbar-brand {
+  color: #000000;
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover { 
+  background-color: black;
 }
 
-textarea,
-input {
-    display: block;
-    width: 100%;
+.navbar-inverse .navbar-nav>.active>a {
+  background-color: black;
+}
+.navbar-inverse .navbar-brand:hover {
+  background: black;
 }
 
-input {
-    height: 36px;
-    font-size: 24px;
-    color: black;
+.navbar-inverse .navbar-nav>li>a:hover {
+  background: black;
+}
+
+.navbar-inverse .navbar-brand {
+  color: black;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: black;
+}
+
+.scrape-new {
+  cursor: pointer;
+  color: black;
+}
+
+.m-top-80 {
+  margin-top: 80px;
 }
 
 textarea {
-    height: 200px;
-    font-size: 18px;
+  padding: 10px;
+  resize: none;
 }
 
-@media only screen and (max-width: 1440px) {
-    nav .brand-logo {
-        left: 3%;
-    }
+.bootbox-body .btn {
+  float: right;
+  margin: 5px;
 }
 
-@media only screen and (max-width: 993px) {
-    nav .brand-logo {
-        left: 50%;
-    }
+.note.list-group-item {
+  padding: 30px;
 }
 
-@media only screen and (min-width: 601px) {
-    wrapper i,
-    nav a.button-collapse,
-    nav a.button-collapse i {
-        height: 100px;
-        line-height: 100px;
-    }
+.note.list-group-item .btn {
+  position: relative;
+  bottom: 10px;
 }
 
-nav .button-collapse i {
-    height: 100px;
-    line-height: 100px;
-    color: black;
+.alert-warning {
+  background-color: red;
+}
+
+a {
+  color: black;
+}
+a:hover, a:focus {
+  color: red;
+}
+
+.btn:hover {
+  color: red;
+}
+
+.btn-danger:hover { 
+  color: black;
+}
+
+.btn-info{
+  background-color: black;
 }
