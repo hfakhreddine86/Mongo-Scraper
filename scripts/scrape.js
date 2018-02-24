@@ -7,7 +7,7 @@ var cheerio = require("cheerio");
 
 var scrapeInScriptsFile = function (cb) {
 
-  request("http://www.articlesfactory.com/articles/technology.html", function (err, res, body) {
+  request("http://www.theonion.com", function (err, res, body) {
 
     var $ = cheerio.load(body);
 
