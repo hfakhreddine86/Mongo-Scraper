@@ -94,6 +94,7 @@ body {
   color: rgb(0, 0, 0);
   display: inline-block;
   width: 80%;
+  margin-top: 50px;
 }
 
 .footer > .container > p {
